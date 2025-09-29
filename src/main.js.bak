@@ -1,0 +1,51 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+import fs from "fs/promises";
+import path from "path";
+import { PuppeteerCrawler, Dataset } from "crawlee";
+import { StepStoneAdapter as Adapter } from "./stepstone-adapter.js";
+import { validateJobData } from "./utils/validation.js";
+import { logger } from "./utils/logger.js";
+
+const config = {
+    START_URL: "https://www.stepstone.de/stellenangebote--software-developer--Deutschland", 
+    concurrency: parseInt(process.env.CONCURRENCY || "1", 10),
+    maxPages: parseInt(process.env.MAX_PAGES || "1", 10),
+    requestDelay: parseInt(process.env.REQUEST_DELAY || "1000", 10),
+    maxRetries: parseInt(process.env.MAX_RETRIES || "3", 10)
+};
+
+const stats = { processed: 0, errors: 0, duplicates: 0, saved: 0, locations: new Map(), skills: new Map() };
+const seenJobs = new Set();
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function exportData(items) {
+    await fs.mkdir("output", { recursive: true });
+    const jsonPath = path.join("output", "jobs.json");
+    await fs.writeFile(jsonPath, JSON.stringify(items, null, 2), "utf8");
+    logger.info(`Exported ${items.length} jobs to ${jsonPath}`);
+
+    if (items.length > 0) {
+        const csvPath = path.join("output", "jobs.csv");
+        const headers = Object.keys(items[0]);
+        const rows = [headers.join(",")];
+        for (const job of items) {
+            const vals = headers.map(h => {
+                const v = job[h];
+                if (v === null || v === undefined) return "";
+                if (Array.isArray(v)) return '"' + v.join("; ") + '"';
+                if (typeof v === "string" && (v.includes(",") || v.includes('"'))) {
+                    return '"' + v.replace(/"/g, '""') + '"';
+                }
+                return String(v);
+            });
+            rows.push(vals.join(","));
+        }
+        await fs.writeFile(csvPath, rows.join("\n"), "utf8");
+        logger.info(`Exported ${items.length} jobs to ${csvPath}`);
+    }
+}
+
+// … rest of your crawler code stays the same, just replace ProfesiaAdapter with Adapter
