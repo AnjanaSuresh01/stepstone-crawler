@@ -51,7 +51,7 @@ After running, the crawler exports job data to the output/ folder:
 - output/sample-jobs.csv → CSV format (optional, included as a sample)
 The files contain a small sample dataset so you can quickly check the results.
 
-5.Notes
+ 5.Notes
 - The crawler was first tested on Profesia and Indeed, but after iterations, StepStone was chosen for the final version.
 - It respects robots.txt and the site’s Terms of Service.
 - Only publicly available pages are scraped (no logins, no captcha bypassing).
