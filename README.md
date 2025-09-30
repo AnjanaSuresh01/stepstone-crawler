@@ -23,7 +23,9 @@ The crawler collects key job information such as:
   3.1 Clone the repository:
        ```bash
        git clone https://github.com/AnjanaSuresh01/stepstone-crawler
+       
        cd  stepstone-crawler
+       
   3.2 Install dependencies:
        ```bash
        npm install
