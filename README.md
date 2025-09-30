@@ -29,6 +29,7 @@ The crawler collects key job information such as:
   3.2 Install dependencies:
        ```bash
        npm install
+       
   3.3 Usage
        Run the crawler with:
        ```bash
