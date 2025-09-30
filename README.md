@@ -30,16 +30,16 @@ These features reflect a balance between functionality and best practices when w
 3. Installation
    
 3.1 Clone the repository
-  ```bash
+  ``bash
 git clone https://github.com/AnjanaSuresh01/stepstone-crawler
 cd stepstone-crawler  
 
 3.2 Install dependencies
- ```bash
+  ``bash
 npm install
 
 3.3 Run the crawler
-```bash
+ ``bash
 npm start
 
 By default, the crawler uses the StepStone adapter.
