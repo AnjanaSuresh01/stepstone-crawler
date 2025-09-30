@@ -29,7 +29,7 @@ This setup simulates a real-world job aggregation pipeline.
 - (Optional) Chrome/Chromium installed if not using the bundled Puppeteer browser
 
 4.Project Structure
-
+.
 ├── src/
 │   ├── main.js               # Entry point (StepStone by default)
 │   ├── stepstone-adapter.js  # StepStone crawler adapter
