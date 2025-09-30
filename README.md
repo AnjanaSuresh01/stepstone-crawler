@@ -1,9 +1,7 @@
 Job Portal Crawler – StepStone
 
 1. Overview
-This project is a Node.js crawler built with Apify/Crawlee that extracts job postings from StepStone.
-The main goal was to demonstrate practical skills in web scraping, data extraction, and integration while following best practices like respecting rate limits, validating data, and avoiding duplicates.
-
+This project is a Node.js crawler built with Apify/Crawlee that extracts job postings from StepStone.The main goal was to demonstrate practical skills in web scraping, data extraction, and integration while following best practices like respecting rate limits, validating data, and avoiding duplicates.
 Along the way, I explored multiple job portals to test and refine my approach:
 - I started with Profesia.sk (the suggested portal)
 - Then experimented with Indeed
@@ -25,7 +23,88 @@ To make the crawler flexible and maintainable, I implemented:
 - Polite crawling → Configurable concurrency, retry logic, and backoff to avoid overwhelming servers
 - Logging → Keeps track of successes, failures, and overall progress
 - Environment variables → Customizable parameters like START_URL, CONCURRENCY, and MAX_PAGES
-These features reflect a balance between functionality and best practices when working with public job portals.
+
+3. Project Structure
+
+Here’s where you can find the main parts of the project:
+.
+├── src/                   
+│   ├── main.js              #(StepStone by default)
+│   ├── stepstone-adapter.js #StepStone crawler adapter
+│   ├── profesia-adapter.js  # Profesia crawler adapter (exploratory)
+│   ├── indeed-adapter.js    # Indeed crawler adapter (exploratory)
+│   ├── utils/             
+│   │   ├── date-parser.js   
+│   │   ├── salary-parser.js 
+│   │   ├── validation.js    
+│   │   └── logger.js        
+│   └── tests/              
+│       └── parsers.test.js  
+│
+├── output/                 
+│   ├── sample-jobs.json     
+│   └── sample-jobs.csv      
+│
+├── package.json             
+├── package-lock.json
+├── .gitignore
+└── README.md
+
+4. Installation
+4.1 Clone the repository
+''bash
+git clone https://github.com/AnjanaSuresh01/stepstone-crawler
+cd stepstone-crawler
+
+4.2 Install dependencies
+''bash
+npm install
+
+4.3 Run the crawler
+''bash
+npm start
+
+By default, the crawler uses the StepStone adapter.
+If you’d like to experiment with Profesia or Indeed, you can switch adapters in src/main.js
+
+5. Output
+After running, the crawler exports job data to the output/ folder:
+- output/sample-jobs.json → JSON format
+- output/sample-jobs.csv → CSV format (optional, included as a sample)
+The files contain a small sample dataset so you can quickly check the results.
+
+6. Notes
+- The crawler was first tested on Profesia and Indeed, but after iterations, StepStone was chosen for the final version.
+- It respects robots.txt and the site’s Terms of Service.
+- Only publicly available pages are scraped (no logins, no captcha bypassing).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 3. Installation
    
