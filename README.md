@@ -82,14 +82,14 @@ Customize the crawler using environment variables:
 
 7. Output
 After running, the crawler exports job data to the output/ folder:
-> output/sample-jobs.json → JSON format
-> output/sample-jobs.csv → CSV format
+- output/sample-jobs.json → JSON format
+- output/sample-jobs.csv → CSV format
 Each entry contains information like job title, company, location, salary, employment type, posting date, and description.
 
 8.Notes
-> Initially tested on Profesia and Indeed, but StepStone was chosen for the final version
-> Respects robots.txt and site Terms of Service
-> Demonstrates a scalable, modular architecture for job aggregation
+- Initially tested on Profesia and Indeed, but StepStone was chosen for the final version
+- Respects robots.txt and site Terms of Service
+- Demonstrates a scalable, modular architecture for job aggregation
 
 
 
